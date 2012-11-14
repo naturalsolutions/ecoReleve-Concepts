@@ -1,4 +1,4 @@
-ecoReleve Concepts
+ecoRelevé Concepts
 ==================
 
 KOS editor for ecoRelevé project
