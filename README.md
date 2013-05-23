@@ -10,7 +10,7 @@ KOS includes all types of schemas for organizing information and promoting knowl
 To address the issue of knowledge management multi-language, multi-site, multi-application, we propose to build a Knowledge Organization System that will be part of the ecoRelevé platform as the Concepts module.
 By using SKOS, a standard for modeling controlled vocabularies, we aim vocabularies to be interoperable applications but also with other external vocabularies.
 
-We propose to make the implementation of the Concepts module as an instance of a Semantic MediaWiki (SMW). SMW can be used for managing SKOS vocabularies across the Web (import/export/creation/modification functionalities). A single web-based application will avoid to take care about keeping distant sites up to date.
+We propose to make the implementation of the Concepts module as an instance of a [Semantic MediaWiki](http://semantic-mediawiki.org/). SMW can be used for managing SKOS vocabularies across the Web (import/export/creation/modification functionalities). A single web-based application will avoid to take care about keeping distant sites up to date.
 Highly customizable, SMW will be fully integrated to the ecoRelevé platform.
 
 The revision control system, embedded in MediaWiki, will allow a perfect control of the versioning management. Moreover, MediaWiki offers an advanced mechanism of role and right management. This mechanism enables to fully privatize access to the content (login/password).
