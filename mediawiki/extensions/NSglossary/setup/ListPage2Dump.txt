@@ -1,0 +1,59 @@
+Property:Bibo:Document
+Property:Bibo:Webpage
+Property:Bibo:abstract
+Property:Bibo:chapter
+Property:Bibo:edition
+Property:Bibo:isbn
+Property:Bibo:issue
+Property:Bibo:pages
+Property:Bibo:volume
+Property:Dc:identifier
+Property:Dcterms:bibliographicCitation
+Property:Dcterms:creator
+Property:Dcterms:date
+Property:Dcterms:language
+Property:Dcterms:publisher
+Property:Dcterms:title
+Property:Dcterms:type
+Property:Rdf:type
+Property:Rdfs:comment
+Property:Rdfs:isDefinedBy
+Property:Rdfs:label
+Property:Rdfs:subPropertyOf
+Property:Skos:altLabel@fr
+Property:Skos:broader
+Property:Skos:definition
+Property:Skos:definition@fr
+Property:Skos:example
+Property:Skos:preferedLabel
+Property:Skos:preferedLabel@fr
+Property:Skos:related
+Category:SKOS
+Category:Bibo
+Category:Bibliographic resources
+Category:Term
+Category:Term category
+Category:Term category type
+Category:TopConcept
+Property:Skos:definition@ru
+Property:Skos:preferedLabel@ru
+Property:Skos:altLabel@ru
+MediaWiki:Smw_import_skos
+MediaWiki:Smw_import_bibo
+MediaWiki:Smw_import_dcterms
+MediaWiki:Smw_import_rdf
+MediaWiki:Smw_import_rdfs
+Form:Definition term simple
+Form:Definition term category
+Form:Definition topConcept
+Form:Definition term
+Form:Bibliographic resource
+Template:!
+Template:!-
+Template:Bibliographic resource
+Template:BuildTermHierarchy
+Template:Definition term category
+Template:Definition term simple
+Template:OperationActionList
+Template:Skos definition tab
+Template:TestFilteredTopConceptResult

@@ -1,0 +1,21 @@
+
+#--------------------- Install extension : 
+== 1.1/Install  ==
+=== 1.1/Install extension ===
+
+require_once("$IP/extensions/NSglossary/NS_glossary.php");
+
+=== 1.2/Configure permission ===
+
+== 2.1/Configure skins ==
+
+== 3.Restore data ==
+
+cd maintenance
+php importDump.php ../extensions/NSglossary/setup/ns-glossary.xml.gz
+
+
+#DUMP DATA - 
+php dumpBackup.php --current --output=gzip:../extensions/NSglossary/setup/ns-glossary.xml.gz --pagelist=../extensions/NSglossary/setup/ListPage2Dump.txt
+
+
