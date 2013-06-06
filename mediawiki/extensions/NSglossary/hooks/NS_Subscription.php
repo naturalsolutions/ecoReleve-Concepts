@@ -15,15 +15,28 @@ class NSSubscription {
      */
 	public static function onGetPreferences( User $user, array &$preferences ) {
 	global $wgServer,$wgScriptPath;
-		//Get all subscription
+
+		// Intro text
+		$preferences['nsg_subscription_intro'] =
+			array(
+				'type' => 'info',
+				'label' => '&#160;',
+        'default' => Xml::tags( 'tr', array(),
+					Xml::tags( 'td', array( 'colspan' => 2 ),
+						wfMessage( 'prefs-subscription-intro-text' )->parseAsBlock() ) ),
+				'section' => 'nsg',
+				'raw' => 1,
+				'rawrow' => 1,
+			);
     
+		//Get all subscription
     $q = '[[Category:Thesaurus subscription]]';
 		
 		$wsCall = NSSMWData::buildWSQueryCall($wgServer.$wgScriptPath.'/index.php?title=Special%3AAsk&',array(), $q, 'json');
     $collectionWS =  file_get_contents($wsCall);
     $collectionData = json_decode($collectionWS);
+    if (!$collectionData) return true;
 		foreach ( $collectionData->results as /* SWLGroup */ $group ) {
-
       $n = str_replace(' ', '_', $group->fulltext);
 			$preferences['nsg_subscription_' . $n] = array(
 				'type' => 'toggle',

@@ -38,7 +38,8 @@ $messages['qqq'] = array(
   
   'prefs-nsg'  => 'Glossary subcription',
   'prefs-subscription'  => 'Subcription list',
-  
+  'prefs-subscription-intro-text' => 'Blabla bla bla. To manage (create/edit) the subscriptions go to [[:Category:Thesaurus_subscription|Subscriptions page]]',
+
   'special-subscription-log'  => 'Subscription log',
 );
 
@@ -81,7 +82,9 @@ $messages['en'] = array(
   
   'prefs-nsg'  => 'Glossary subcription',
   'prefs-subscription'  => 'Subcription list',
-  
+  'prefs-subscription-intro-text' => 'Blabla bla bla. To manage (create/edit) the subscriptions go to [[:Category:Thesaurus_subscription|Subscriptions page]]',
+
+
   'special-subscription-log'  => 'Subscription log',
 );
 
@@ -126,7 +129,8 @@ $messages['fr'] = array(
   
   'prefs-nsg'  => 'Glossary subcription',
   'prefs-subscription'  => 'Subcription list',
-  
+  'prefs-subscription-intro-text' => 'Blabla bla bla. To manage (create/edit) the subscriptions go to [[:Category:Thesaurus_subscription|Subscriptions page]]',
+
   
   'special-subscription-log'  => 'Subscription log',
   

@@ -79,7 +79,7 @@ class HierarchyTree {
    * @return true si tout c'est bien passé
    ****************************************************************************/
   function createJsonHierarchyTreeFile() {
-    global $wgScriptPath,$nsfgIP;
+    global $wgScriptPath,$nsfgIP, $nsgJsPath;
     //Récupération et formatage de l'arbre complet
     $tree= array();
     
@@ -89,7 +89,7 @@ class HierarchyTree {
     //print_r($tree);
     
     
-    $dir =$nsfgIP.'/js/data/';
+    $dir =$nsgJsPath;
     //Création de l'arbre en français 
     $ftree = $this->formatHierarchyToJsonTree($tree, 'fr');
     $fulltree[0]= array (
@@ -125,7 +125,7 @@ class HierarchyTree {
    * @return true si tout c'est bien passé
    ****************************************************************************/
   function createJsonD3jsFile() {
-    global $wgScriptPath,$nsfgIP;
+   global $wgScriptPath,$nsfgIP,$nsgJsPath;
     //Récupération et formatage de l'arbre complet
     $tree= array();
     

@@ -3,9 +3,16 @@
 $moduleGlossaryName= 'NSglossary';
 $nsfgIP = dirname( __FILE__ );
 
-//Valeur en dur
+//Variable de configuration 
 $qlg = 'fr';
 $wgidPath = array();
+
+//Path where js files will be stored. Need a directory with www-data write permission
+$nsgJsPath =$nsfgIP.'/js/data/';
+//Path where cookies files will be stored
+$nsgCookiePath = '/tmp/';
+
+
 
 if ( ! defined( 'MEDIAWIKI' ) )
         die();

@@ -78,7 +78,11 @@ class NSSpecialExport extends SpecialPage {
         $semdata = smwfGetStore()->getSemanticData( $pDataItem); // advise store to retrieve only core things
         $subscribTo =  NSSMWData::getStringPropertyValue( $semdata,$p);
         $proper =  NSSMWData::getStringPropertyValues( $semdata,new SMWDIProperty('ExportProperty'));
-        
+       
+       if ($subscribTo === '')  {
+          $wgOut->addHTML('Subscription page whitout SubscribTo property');
+          return ;
+        }
         ///------------------------------------------------------------------
         //      USER subscriber LOG 
         ///------------------------------------------------------------------
