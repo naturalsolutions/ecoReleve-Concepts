@@ -56,17 +56,20 @@ class NSSMWData {
     return $result;
   }
 
-  public function buildWSQueryCall($baseurl, $properties, $q, $format = 'rdf') {
+  public function buildWSQueryCall($baseurl,$q, $properties,  $extraproperties, $format = 'rdf') {
     $urlArgs = array();
     $urlArgs['q'] = $q;
-
     foreach ($properties as $p ) {
       $proClean = str_replace('Property:', '?', $p);
       $urlArgs['p'][] = $proClean;
     };
+    
+    foreach ($extraproperties as $epname => $epval) {
+      $urlArgs['p['.$epname.']'] = $epval;
+    };
     $urlArgs['p[format]'] = $format;
     $wsCall =  wfArrayToCGI($urlArgs);
-    //print "<br/>$wsCall<br/>";
+    //print "<br/>$wsCall<br/>*******\n";
     return $baseurl.$wsCall;
 	}
   	

@@ -86,8 +86,6 @@ class HierarchyTree {
     $tree=$this->getChildrenCategoryLinks(Title::newFromText( 'Category:Term category'), 0 );
     //ajout d'une racine
     $fulltree = array();
-    //print_r($tree);
-    
     
     $dir =$nsgJsPath;
     //Création de l'arbre en français 
@@ -198,7 +196,6 @@ class HierarchyTree {
     $options['USE INDEX']['categorylinks'] = 'cl_sortkey';
     $res = $dbr->select( $tables, $fields, $where, __METHOD__, $options, $joins );
     $i =0;
-    
     foreach ( $res as $row ) {
       //Si c'est une catégorie
       if ($row->page_namespace == 14) {
@@ -207,13 +204,14 @@ class HierarchyTree {
       }
       else $page =  Title::newFromText( $row->page_title );
       
-      //Si le fils est un top concept alors on récupère ces fils au travers de la fonction getChildOfBroaderTerm
-      if ($this->isTopConcept($page) == 'true') {
-       $child = $this->getChildOfBroaderTerm($page);  
-         $row->type='topConcept';
+      //Si le fils est une catégorie alors appel récursif à la fonction
+      if ($row->page_namespace == 14)  {
+        $child = $this->getChildrenCategoryLinks( $page,  $level +1);
       }
-      else { //Si le fils est une catégorie alors appel récursif à la fonction
-        $child = $this->getChildrenCategoryLinks( $page,  $level +1);  
+      elseif($this->isTopConcept($page) == 'true') { 
+      //Si le fils est un top concept alors on récupère ces fils au travers de la fonction getChildOfBroaderTerm
+        $child = $this->getChildOfBroaderTerm($page);  
+        $row->type='topConcept';
       }  
       $tree[$title->getArticleID()][$i]['data'] = $row;
       //Si la catégorie à au moins un fils, ajout à l'arbre de la hiérachie de ces fils

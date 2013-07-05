@@ -32,7 +32,7 @@ class NSSubscription {
 		//Get all subscription
     $q = '[[Category:Thesaurus subscription]]';
 		
-		$wsCall = NSSMWData::buildWSQueryCall($wgServer.$wgScriptPath.'/index.php?title=Special%3AAsk&',array(), $q, 'json');
+		$wsCall = NSSMWData::buildWSQueryCall($wgServer.$wgScriptPath.'/index.php?title=Special%3AAsk&',$q, array(), array(),'json');
     $collectionWS =  file_get_contents($wsCall);
     $collectionData = json_decode($collectionWS);
     if (!$collectionData) return true;

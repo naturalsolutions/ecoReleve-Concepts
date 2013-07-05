@@ -113,28 +113,28 @@ class NSSpecialExport extends SpecialPage {
       }
       
       //Count results
-      //Si nombre de résultat est supérieur à 100 alors necessité de faire des boucles pour récupérer l'ensemble des données
+      //Si nombre de résultat est supérieur à 100 alors le renvoie une 
       $params[] = new SMWPrintRequest( SMWPrintRequest::PRINT_THIS, "" );
       $params = SMWQueryProcessor::getProcessedParams( array(), array() );
       $printouts[] = new SMWPrintRequest(SMWPrintRequest::PRINT_PROP, 'has Connection', SMWPropertyValue::makeUserProperty('has Connection')); 
       $queryobj = SMWQueryProcessor::createQuery($q, $params,'self::INLINE_QUERY', 'count');
       $resultsCount = smwfGetStore()->getQueryResult($queryobj); 
-      
-      
+
       $params = array('limit'=>100,'offset'=>0 );
         
-      $wsCall = NSSMWData::buildWSQueryCall($wgServer.$wgScriptPath.'/index.php?title=Special%3AAsk&',array_merge($proper,$params), $q);
+      $wsCall = NSSMWData::buildWSQueryCall($wgServer.$wgScriptPath.'/index.php?title=Special%3AAsk&', $q,$proper,$params);
       $resultsXML = file_get_contents($wsCall);
         
       $rdfresults = '';
-      for ($i=100; $i<=$resultsCount +100; $i = $i+100) {
+      for ($i=100; $i<$resultsCount+100; $i = $i+100) {
         $params = array('limit'=>100,'offset'=>$i );
         
-        $wsCall = NSSMWData::buildWSQueryCall($wgServer.$wgScriptPath.'/index.php?title=Special%3AAsk&',array_merge($proper,$params), $q);
-        $resultsXML = file_get_contents($wsCall);
+        $wsCall = NSSMWData::buildWSQueryCall($wgServer.$wgScriptPath.'/index.php?title=Special%3AAsk&', $q,$proper,$params);
+        $resultsCall= file_get_contents($wsCall);
+        //$resultsXML = $resultsXML . file_get_contents($wsCall);
         // print_r($resultsXML);
         $dom = new DomDocument;
-        $dom->loadXml($resultsXML);
+        $dom->loadXml($resultsCall);
         $xph = new DOMXPath($dom);
         $xph->registerNamespace('rdf', "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
 

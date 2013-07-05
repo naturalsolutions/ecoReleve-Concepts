@@ -20,7 +20,7 @@ if ( ! defined( 'MEDIAWIKI' ) )
 $wgExtensionCredits['parserhook'][] = array(
         'name' => 'NS glossary extension',
         'author' => 'Natural Solution',
-        'url' => 'http://www.mediawiki.org/wiki/Extension:CategoryBreadcrumb',
+        'url' => 'http://www.natural-solutions.eu',
         'version' => '2.1',
         'description' => 'Glossary functions : Unified breadcrumb; action; property, .....',
 );
@@ -95,8 +95,6 @@ $wgAutoloadClasses['NSCustomTermFormStart'] = $nsfgIP . '/specials/NS_CustomTerm
 $wgAutoloadClasses['NSHierachySpecialPage'] = $nsfgIP . '/specials/NS_HierarchyAction.php';
 $wgAutoloadClasses['NSSubscriptionLog'] = $nsfgIP . '/specials/NS_SubscriptionLog.php';
 $wgAutoloadClasses['NSSpecialExport']= $nsfgIP . '/specials/NS_SpecialExport.php';
- 
- 
 
 
  
@@ -150,3 +148,27 @@ function efCategoryTermFromTitle( $title, &$article ) {
 	return true;
 }
 
+
+/* En vu de la création d'un export personnalisé avec le XML lang
+$wgExtensionFunctions[] = 'nsgInitFormats';
+
+function nsgInitFormats() {
+	global $smwgResultFormats, $smwgResultAliases;
+
+	$formatClasses = array(
+		'nsge_lg' => 'NSGRDFLANGResultPrinter',
+	);
+
+	$formatAliases = array(
+		'nsge_lg'   => array( 'with xml lang' ),
+	);
+  print_r($smwgResultFormats);
+	foreach ( $formatClasses as $format => $val) {
+    $smwgResultFormats[$format] = $formatClasses[$format];
+    if ( isset( $smwgResultAliases ) && array_key_exists( $format, $formatAliases ) ) {
+      $smwgResultAliases[$format] = $formatAliases[$format];
+    }
+	}
+  print_r($smwgResultFormats);
+}
+* */
