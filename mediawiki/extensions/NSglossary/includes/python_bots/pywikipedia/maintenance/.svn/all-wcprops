@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svnroot/pywikipedia/!svn/ver/11609/trunk/pywikipedia/maintenance
+END
+wikimedia_sites.py
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/pywikipedia/!svn/ver/11463/trunk/pywikipedia/maintenance/wikimedia_sites.py
+END
+check_disambiguationspage.py
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/pywikipedia/!svn/ver/11463/trunk/pywikipedia/maintenance/check_disambiguationspage.py
+END
+family_check.py
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/pywikipedia/!svn/ver/11463/trunk/pywikipedia/maintenance/family_check.py
+END
+setmail.py
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/pywikipedia/!svn/ver/11466/trunk/pywikipedia/maintenance/setmail.py
+END
+test_namespaces.py
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/pywikipedia/!svn/ver/11136/trunk/pywikipedia/maintenance/test_namespaces.py
+END
+cleanident
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svnroot/pywikipedia/!svn/ver/7522/trunk/pywikipedia/maintenance/cleanident
+END
+release.py
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/pywikipedia/!svn/ver/11468/trunk/pywikipedia/maintenance/release.py
+END
+preferences.py
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/pywikipedia/!svn/ver/11470/trunk/pywikipedia/maintenance/preferences.py
+END
+update_namespaces.py
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/pywikipedia/!svn/ver/11609/trunk/pywikipedia/maintenance/update_namespaces.py
+END
+readtalk.py
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/pywikipedia/!svn/ver/11465/trunk/pywikipedia/maintenance/readtalk.py
+END

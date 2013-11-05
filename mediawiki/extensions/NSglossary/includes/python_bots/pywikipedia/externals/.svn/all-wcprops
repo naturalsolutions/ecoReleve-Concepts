@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/pywikipedia/!svn/ver/11753/trunk/pywikipedia/externals
+END
+patch-music21
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/pywikipedia/!svn/ver/11527/trunk/pywikipedia/externals/patch-music21
+END
+patch-pydmtx
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/pywikipedia/!svn/ver/11527/trunk/pywikipedia/externals/patch-pydmtx
+END
+patch-BeautifulSoup
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/pywikipedia/!svn/ver/11542/trunk/pywikipedia/externals/patch-BeautifulSoup
+END
+patch-jseg
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/pywikipedia/!svn/ver/11527/trunk/pywikipedia/externals/patch-jseg
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svnroot/pywikipedia/!svn/ver/11753/trunk/pywikipedia/externals/__init__.py
+END
+patch-zbar
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/pywikipedia/!svn/ver/11527/trunk/pywikipedia/externals/patch-zbar
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svnroot/pywikipedia/!svn/ver/11549/trunk/pywikipedia/externals/README
+END

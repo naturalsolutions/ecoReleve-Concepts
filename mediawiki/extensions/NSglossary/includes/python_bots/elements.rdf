@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+    <!ENTITY ex 'http://aifb.uni-karlsruhe.de/WBS/ex#'>
+    <!ENTITY owl 'http://www.w3.org/2002/07/owl#'>
+    <!ENTITY xsd 'http://www.w3.org/2001/XMLSchema#'>
+]>
+
+<rdf:RDF
+    xml:base="http://aifb.uni-karlsruhe.de/WBS/ex#"
+    xmlns:ex="http://aifb.uni-karlsruhe.de/WBS/ex#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+
+<owl:Ontology rdf:about="#"/>
+
+<owl:Class rdf:about="&ex;Element" rdfs:label="Element" />
+
+<ex:Element rdf:about="&ex;Carbon" rdfs:label="Carbon">
+  <ex:elementSymbol>C</ex:elementSymbol>
+  <ex:elementNumber>4</ex:elementNumber>
+</ex:Element>
+
+</rdf:RDF>

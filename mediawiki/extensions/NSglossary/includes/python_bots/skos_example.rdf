@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<rdf:RDF
+	xmlns="http://aims.fao.org/aos/agrovoc/"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:owl="http://www.w3.org/2002/07/owl#"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:dct="http://purl.org/dc/terms/"
+	xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+	xmlns:owlxml="http://www.w3.org/2006/12/owl2-xml#">
+
+<rdf:Description rdf:about="http://aims.fao.org/aos/agrovoc">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://aims.fao.org/aos/agrovoc/c_4788">
+	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<skos:inScheme rdf:resource="http://aims.fao.org/aos/agrovoc"/>
+	<skos:topConceptOf rdf:resource="http://aims.fao.org/aos/agrovoc"/>
+	<compose xmlns="http://aims.fao.org/aos/agrontology#" rdf:resource="http://aims.fao.org/aos/agrovoc/c_12522"/>
+	<isUsedIn xmlns="http://aims.fao.org/aos/agrontology#" rdf:resource="http://aims.fao.org/aos/agrovoc/c_2736"/>
+	<isUsedIn xmlns="http://aims.fao.org/aos/agrontology#" rdf:resource="http://aims.fao.org/aos/agrovoc/c_2758"/>
+	<isUsedIn xmlns="http://aims.fao.org/aos/agrontology#" rdf:resource="http://aims.fao.org/aos/agrovoc/c_3041"/>
+	<isUsedIn xmlns="http://aims.fao.org/aos/agrontology#" rdf:resource="http://aims.fao.org/aos/agrovoc/c_3791"/>
+	<isUsedIn xmlns="http://aims.fao.org/aos/agrontology#" rdf:resource="http://aims.fao.org/aos/agrovoc/c_4668"/>
+	<isUsedIn xmlns="http://aims.fao.org/aos/agrontology#" rdf:resource="http://aims.fao.org/aos/agrovoc/c_4911"/>
+	<isUsedIn xmlns="http://aims.fao.org/aos/agrontology#" rdf:resource="http://aims.fao.org/aos/agrovoc/c_7536"/>
+	<isUsedIn xmlns="http://aims.fao.org/aos/agrontology#" rdf:resource="http://aims.fao.org/aos/agrovoc/c_7683"/>
+	<influences xmlns="http://aims.fao.org/aos/agrontology#" rdf:resource="http://aims.fao.org/aos/agrovoc/c_2208"/>
+	<hasStatus xmlns="http://aims.fao.org/aos/agrontology#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Published</hasStatus>
+	<dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-05-16T16:16:00Z</dct:modified>
+	<dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-11-20T20:17:38Z</dct:created>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://aims.fao.org/aos/agrovoc/xl_ar_1299485662065">
+	<literalForm xmlns="http://www.w3.org/2008/05/skos-xl#" xml:lang="ar">أساليب</literalForm>
+	<rdf:type rdf:resource="http://www.w3.org/2008/05/skos-xl#Label"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://aims.fao.org/aos/agrovoc/c_4788">
+	<prefLabel xmlns="http://www.w3.org/2008/05/skos-xl#" rdf:resource="http://aims.fao.org/aos/agrovoc/xl_ar_1299485662065"/>
+	<skos:prefLabel xml:lang="ar">أساليب</skos:prefLabel>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://aims.fao.org/aos/agrovoc/xl_ar_1299485662065">
+	<hasCodeAgrovoc xmlns="http://aims.fao.org/aos/agrontology#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">4788</hasCodeAgrovoc>
+	<hasStatus xmlns="http://aims.fao.org/aos/agrontology#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Published</hasStatus>
+	<dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2002-12-12T00:00:00Z</dct:created>
+</rdf:Description>
+
+
+<skos:ConceptScheme rdf:about="http://aims.fao.org/aos/agrovoc22">
+	<skos:prefLabel xml:lang="en">Simple schema</skos:prefLabel>
+	<dc:creator>Reece H. Dunn</dc:creator>
+	<skos:hasTopConcept rdf:resource="http://aims.fao.org/aos/agrovoc22_a"/>
+	<skos:hasTopConcept rdf:resource="#b"/>
+  <skos:hasTopConcept rdf:resource="http://vocab.nerc.ac.uk/collection/P05/current/014/" />
+</skos:ConceptScheme>
+
+<skos:Concept rdf:about="http://aims.fao.org/aos/agrovoc22_a">
+	<skos:prefLabel xml:lang="en">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</skos:prefLabel>
+	<skos:altLabel xml:lang="fr">alt1</skos:altLabel>
+	<skos:altLabel xml:lang="fr">alt2</skos:altLabel>
+	<skos:inScheme rdf:resource="http://aims.fao.org/aos/agrovoc22"/>
+</skos:Concept>
+
+<skos:Concept rdf:about="http://aims.fao.org/aos/agrovoc22_b">
+	<skos:prefLabel xml:lang="en">BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB</skos:prefLabel>
+	<skos:prefLabel xml:lang="fr">BBBBBBBFR</skos:prefLabel>
+	<skos:altLabel xml:lang="fr">alt3</skos:altLabel>
+	<skos:inScheme rdf:resource="http://aims.fao.org/aos/agrovoc22"/>
+</skos:Concept>
+
+  <skos:Concept rdf:about="http://my.fake.domain/test1">
+    <skos:inScheme rdf:resource="http://aims.fao.org/aos/agrovoc22"/>
+    <skos:prefLabel  xml:lang="en">Acoustic backscatter in the water column</skos:prefLabel>
+    <skos:definition>Includes all parameters covering the strength of acoustic signal return, including absolute measurements of returning signal strength as well as parameters expressed as backscatter (the proportion of transmitted signal returned)</skos:definition>
+    <owlxml:sameAs rdf:resource="http://vocab.nerc.ac.uk/collection/L19/current/005/"/>
+    <skos:broader rdf:resource="http://vocab.nerc.ac.uk/collection/P05/current/014/"/>
+    <skos:narrower rdf:resource="http://vocab.nerc.ac.uk/collection/P01/current/ACBSADCP/"/>
+    <skos:altLabel xml:lang="en">Acc_bksctr</skos:altLabel>
+    <skos:altLabel rdf:resource="http://vocab.nerc.ac.uk/collection/L19/current/005/"/>
+    <skos:related rdf:resource="http://my.fake.domain/test2"/>
+  </skos:Concept>
+  
+<skos:Concept rdf:about="http://my.fake.domain/test3">
+	<skos:prefLabel xml:lang="en">ccccccccccccccccccccccccccccccccccccccccccc</skos:prefLabel>
+	<skos:prefLabel xml:lang="fr">BBBBBBBFR</skos:prefLabel>
+	<skos:altLabel xml:lang="fr">alt3</skos:altLabel>
+	<skos:broader rdf:resource="http://my.fake.domain/test1"/>
+</skos:Concept>
+
+
+  <skos:Collection rdf:about="http://my.fake.domain/collection">
+    <skos:prefLabel xml:lang="en">Linguistic groupings</skos:prefLabel>
+    <skos:prefLabel xml:lang="fr">Ensembles linguistiques</skos:prefLabel>
+    <skos:prefLabel xml:lang="es">Agrupaciones lingüísticas</skos:prefLabel>
+    <skos:prefLabel xml:lang="ru">Языковые группы</skos:prefLabel>
+    
+    <dc:description>A collection of concepts used as a test</dc:description>
+    <skos:member rdf:resource="http://my.fake.domain/test1"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://vocab.nerc.ac.uk/collection/P05/current/014/">
+        <skos:prefLabel xml:lang="en">Ocean</skos:prefLabel>
+        <skos:definition>Just another concept</skos:definition>
+        <skos:related rdf:resource="http://my.fake.domain/test1"/>
+      </skos:Concept>
+    </skos:member>
+  </skos:Collection>
+</rdf:RDF>

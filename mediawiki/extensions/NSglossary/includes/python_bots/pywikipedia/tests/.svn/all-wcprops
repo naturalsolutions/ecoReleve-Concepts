@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svnroot/pywikipedia/!svn/ver/11541/trunk/pywikipedia/tests
+END
+test_utils.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svnroot/pywikipedia/!svn/ver/9197/trunk/pywikipedia/tests/test_utils.py
+END
+test_wiktionary.py
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/pywikipedia/!svn/ver/9043/trunk/pywikipedia/tests/test_wiktionary.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svnroot/pywikipedia/!svn/ver/9838/trunk/pywikipedia/tests/__init__.py
+END
+test_ipregex.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svnroot/pywikipedia/!svn/ver/10331/trunk/pywikipedia/tests/test_ipregex.py
+END
+test_userlib.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/pywikipedia/!svn/ver/9043/trunk/pywikipedia/tests/test_userlib.py
+END
+test_query.py
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svnroot/pywikipedia/!svn/ver/10699/trunk/pywikipedia/tests/test_query.py
+END
+test_externals.py
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/pywikipedia/!svn/ver/11541/trunk/pywikipedia/tests/test_externals.py
+END
+test_pagegenerators.py
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/pywikipedia/!svn/ver/11460/trunk/pywikipedia/tests/test_pagegenerators.py
+END
+test_wikipedia.py
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/pywikipedia/!svn/ver/11459/trunk/pywikipedia/tests/test_wikipedia.py
+END
+test_textlib.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/pywikipedia/!svn/ver/9201/trunk/pywikipedia/tests/test_textlib.py
+END
+test_pywiki.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/pywikipedia/!svn/ver/11459/trunk/pywikipedia/tests/test_pywiki.py
+END
+test_date.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svnroot/pywikipedia/!svn/ver/9841/trunk/pywikipedia/tests/test_date.py
+END
+test_botlist.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svnroot/pywikipedia/!svn/ver/11460/trunk/pywikipedia/tests/test_botlist.py
+END
+test_transliteration.py
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/pywikipedia/!svn/ver/10118/trunk/pywikipedia/tests/test_transliteration.py
+END
+test_xmlreader.py
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/pywikipedia/!svn/ver/9836/trunk/pywikipedia/tests/test_xmlreader.py
+END
+test_data_ingestion.py
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/pywikipedia/!svn/ver/10717/trunk/pywikipedia/tests/test_data_ingestion.py
+END

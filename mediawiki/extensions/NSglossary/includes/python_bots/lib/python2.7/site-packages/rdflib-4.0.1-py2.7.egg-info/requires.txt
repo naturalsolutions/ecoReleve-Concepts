@@ -1,0 +1,4 @@
+isodate
+pyparsing<=1.5.7
+SPARQLWrapper
+html5lib

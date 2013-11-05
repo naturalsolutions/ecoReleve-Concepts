@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: python-skos
+Version: 0.0.3
+Summary: A basic implementation of some core elements of the SKOS object model
+Home-page: http://github.com/geo-data/python-skos
+Author: Homme Zwaagstra
+Author-email: hrz@geodata.soton.ac.uk
+License: BSD
+Description: UNKNOWN
+Platform: UNKNOWN

@@ -1,0 +1,9 @@
+K 13
+svn:externals
+V 298
+spelling http://svn.wikimedia.org/svnroot/pywikipedia/trunk/spelling/
+simplejson http://simplejson.googlecode.com/svn/tags/simplejson-2.1.3/simplejson/
+pycolorname https://svn.toolserver.org/svnroot/drtrigon/externals/pycolorname
+opencv https://svn.toolserver.org/svnroot/drtrigon/externals/opencv
+
+END
