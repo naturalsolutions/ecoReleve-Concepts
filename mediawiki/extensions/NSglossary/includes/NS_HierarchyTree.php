@@ -79,6 +79,7 @@ class HierarchyTree {
    * @return true si tout c'est bien passé
    ****************************************************************************/
   function createJsonHierarchyTreeFile() {
+    set_time_limit(0);
     global $wgScriptPath,$nsfgIP, $nsgJsPath;
     //Récupération et formatage de l'arbre complet
     $tree= array();
@@ -159,6 +160,8 @@ class HierarchyTree {
   
   function createJsonVarFile ($dir, $file, $content) {
     try {
+      print_r($dir);
+      print_r($file);
       $jsonftree ='var data =' .$content .';';
       $fp = fopen($dir.$file, 'w');
       fwrite($fp, $jsonftree);
@@ -215,7 +218,9 @@ class HierarchyTree {
       }  
       $tree[$title->getArticleID()][$i]['data'] = $row;
       //Si la catégorie à au moins un fils, ajout à l'arbre de la hiérachie de ces fils
-      if ($child !='empty') $tree[$title->getArticleID()][$i]['children'] = $child;
+      if (isset($child))  {
+        if ($child !='empty') $tree[$title->getArticleID()][$i]['children'] = $child;
+      }
       $i++;
     }
     //Si la catégorie n'a aucun fils alors on renvoie la valeur 'empty'
@@ -279,6 +284,7 @@ class HierarchyTree {
         $fdata['page_title'] = $data->page_title;
         if($data->page_namespace == 14) $isCat=true;
         else  $isCat=false;
+        if (! isset($data->type)) print_r($data);
         $fdata['label'] = $this->formatPageLink ($data->page_title, $lg, $isCat, 'tree-item', true, $data->type);
         if (isset($item['children'])) {
           $fdata['children'] = $this->formatHierarchyToJsonTree ($item['children'],  $lg);

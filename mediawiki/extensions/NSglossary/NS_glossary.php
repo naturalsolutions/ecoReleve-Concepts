@@ -95,13 +95,14 @@ $wgAutoloadClasses['NSCustomTermFormStart'] = $nsfgIP . '/specials/NS_CustomTerm
 $wgAutoloadClasses['NSHierachySpecialPage'] = $nsfgIP . '/specials/NS_HierarchyAction.php';
 $wgAutoloadClasses['NSSubscriptionLog'] = $nsfgIP . '/specials/NS_SubscriptionLog.php';
 $wgAutoloadClasses['NSSpecialExport']= $nsfgIP . '/specials/NS_SpecialExport.php';
+$wgAutoloadClasses['NSImportSKOS']= $nsfgIP . '/specials/NS_ImportSKOS.php';
 
 
  
 // Allow translation of the parser function name
 $wgExtensionMessagesFiles['CustomTermForm'] = $nsfgIP . '/languages/NSF_Messages.php';
 
- $wgHooks['LoadExtensionSchemaUpdates'][] = 'NSSetupSchema::onSchemaUpdate';
+$wgHooks['LoadExtensionSchemaUpdates'][] = 'NSSetupSchema::onSchemaUpdate';
  
 // hook into SkinTemplate.php
 $wgHooks['SkinTemplateOutputPageBeforeExec'][] = 'BCHookFunctions::bcCustomBreadCrumbsDisplay';
@@ -131,6 +132,7 @@ $wgSpecialPages['CustomTermFormStart'] = 'NSCustomTermFormStart';
 $wgSpecialPages['ManageHierarchy'] = 'NSHierachySpecialPage';
 $wgSpecialPages['ExportConceptData']  = 'NSSpecialExport';
 $wgSpecialPages['SubscriptionShowLog']  = 'NSSubscriptionLog';
+$wgSpecialPages['ImportSKOS']  = 'NSImportSKOS';
 //$wgHooks['GetPreferences'][] = 'SWLHooks::onGetPreferences';
 
 /**

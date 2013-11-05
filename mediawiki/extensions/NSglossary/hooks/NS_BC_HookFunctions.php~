@@ -20,7 +20,7 @@ class BCHookFunctions {
   function bcCategoryTreeSkinTemplateOutputPageBeforeExec ($skin, $tpl) {
       global $wgOut, $wgScriptPath,$wgTitle, $wgidPath,$qlg, $moduleGlossaryName, $moduleGlossaryName,$nsfgIP, $wgLang;
       
-      if ($wgLang->getCode()) {
+      if (isset($wgLang->getCode()) ) {
       	$qlg = $wgLang->getCode();
      	}
       /**********

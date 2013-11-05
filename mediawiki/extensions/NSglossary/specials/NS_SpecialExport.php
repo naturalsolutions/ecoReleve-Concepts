@@ -95,7 +95,7 @@ class NSSpecialExport extends SpecialPage {
           __METHOD__,
           array( 'ORDER BY' => 'lpg_date_utc DESC',  'LIMIT' =>1)
         );        
-        
+        $lastSynchroDate = NULL;
         //Si aucune données => alors la subscription n'a pas été initialisée
         if ( 	$res->numRows() == 0 ) {
           $q = '[['.$subscribTo.']]';
@@ -143,6 +143,13 @@ class NSSpecialExport extends SpecialPage {
             $rdfresults .= $this->get_inner_html( $attribute );
         }
       }
+      //Ajout des logs delete/Move
+      if ($action=='update' ) {
+        $logsEvents = $this->getMoveDeleteAction($lastSynchroDate) ; 
+        $rdfresults .= implode('', $logsEvents);
+      }
+    
+    
       $resultsXML = str_replace('</rdf:RDF>', $rdfresults .'</rdf:RDF>', $resultsXML);
       
       //Modification log de l'appel à la subscription
@@ -194,6 +201,53 @@ class NSSpecialExport extends SpecialPage {
 		$wgOut->addHTML( $html );
 	}
 	
+  protected function getMoveDeleteAction($lastSynchroDate = NULL) {
+    $dbr = wfGetDB( DB_SLAVE );
+    //Récupération des pages/Catégorie liées à la catégorie racine
+    $tables = array( 'logging' );
+    $fields = array( 'log_id','log_type','log_action','log_timestamp','log_user','log_user_text','log_namespace',
+      'log_title','log_page','log_comment','log_params','log_deleted');
+    $where = array();
+    $where['log_action'] =  array('move', 'delete', 'restore');
+    
+    if ($lastSynchroDate) $where[] = 'log_timestamp > '. wfTimestamp( TS_MW, $lastSynchroDate);
+    $joins = array();
+    $options = array();
+    
+    $res = $dbr->select( $tables, $fields, $where, __METHOD__, $options, $joins );
+    $i =0;
+    $event = array();
+    $resolverURL =  SpecialPage::getTitleFor( 'URIResolver' )->getFullURL().'/';
+    foreach ( $res as $row ) {
+      global $smwgNamespace; // complete namespace for URIs (with protocol, usually http://)
+      global $wgCanonicalNamespaceNames;
+      $titleName = $row->log_title ;
+      
+      if (isset( $wgCanonicalNamespaceNames[$row->log_namespace])) $titleName =  $wgCanonicalNamespaceNames[$row->log_namespace].':'.$titleName ;
+      $logEntry = DatabaseLogEntry::newFromRow($row);
+      $title = Title::newFromText( $titleName);
+      $logParams =  $logEntry->getParameters();
+
+      if ( '' == $smwgNamespace ) {
+        $resolver = SpecialPage::getTitleFor( 'URIResolver' );
+        $smwgNamespace = $resolver->getFullURL() . '/';
+      } elseif ( $smwgNamespace[0] == '.' ) {
+        $resolver = SpecialPage::getTitleFor( 'URIResolver' );
+        $smwgNamespace = "http://" . substr( $smwgNamespace, 1 ) . $resolver->getLocalURL() . '/';
+      }
+      $text = '<swivt:Subject rdf:about="'.$smwgNamespace.$title->getPrefixedURL() ; 
+      $text .='" action="'.$row->log_action.'">';
+      $text .= '<swivt:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">'.wfTimestamp( TS_ISO_8601, $row->log_timestamp) .'</swivt:creationDate>';
+      if ($row->log_action =='move' &&  ( isset($logParams['4::target'] ))) {
+         $text .= '<target rdf:about="http://192.168.1.96/html/ecoReleve-glossary/wiki/Special:URIResolver/'.$logParams['4::target'].'"/>';
+      }
+      $text .= '</swivt:Subject>';
+      $event[] = $text;
+      
+    }
+    return $event;
+  }
+
 	/**
 	 * Prepare $wgOut for printing non-HTML data.
 	 */
