@@ -167,7 +167,7 @@ class NSUtils {
 
   }
   
-  public function createRelationTopicInput ($label, $isTopConcept){
+  public static  function createRelationTopicInput ($label, $isTopConcept){
     
     global $sfgFieldNum;
      $sfgFieldNum++;

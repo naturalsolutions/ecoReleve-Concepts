@@ -327,7 +327,7 @@ END;
        
         $queryString = array ('[[Skos:broader::'.$broaderTopic.']]', '?Order', 'format=max');
 
-        $result = NSUtils::runQuery($queryString);
+        $result = NSSMWData::runQuery($queryString);
         $order =  $result+1;
         return  $order;
     }
