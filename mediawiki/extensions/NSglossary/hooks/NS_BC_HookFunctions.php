@@ -17,8 +17,8 @@ class BCHookFunctions {
   }
   
 
-  function bcCategoryTreeSkinTemplateOutputPageBeforeExec ($skin, $tpl) {
-      global $wgOut, $wgScriptPath,$wgTitle, $wgidPath,$qlg, $moduleGlossaryName, $moduleGlossaryName,$nsfgIP, $wgLang;
+  public static function bcCategoryTreeSkinTemplateOutputPageBeforeExec ($skin, $tpl) {
+      global $wgOut, $wgScriptPath,$wgTitle, $wgidPath,$qlg, $moduleGlossaryName,$nsgHtmlPath, $moduleGlossaryName,$nsfgIP, $wgLang;
       
       if ($wgLang->getCode()) {
       	$qlg = $wgLang->getCode();
@@ -29,13 +29,20 @@ class BCHookFunctions {
     /*  if (($wgTitle->getNamespace()!=0 ) &&  ($wgTitle->getNamespace()!=14 )) {
         return true;
       }*/
-        $jsBasePath = $wgScriptPath.'/extensions/'.$moduleGlossaryName.'/js';
+     	$jsBasePath = $wgScriptPath.'/extensions/'.$moduleGlossaryName.'/js';
+      if ((! isset($nsgHtmlPath)) && ($nsgHtmlPath == '')) {
+      	$jsDataPath = $jsBasePath.'/data/';
+      }
+      else {
+      	$jsDataPath = $nsgHtmlPath;
+      }
+      
         $html='';
         //@TODO
         $html = '<script src="'.$jsBasePath.'/jqtree/jquery.mockjax.js?303"></script>
                   <script src="'.$jsBasePath.'/jqtree/tree.jquery.js?303"></script>
                   <script src="'.$jsBasePath.'/jqtree/jquery.cookie.js?303"></script>';
-        $html .= '<script src="'.$jsBasePath.'/data/data.'.$qlg.'.js"></script>';
+        $html .= '<script src="'.$jsDataPath.'data.'.$qlg.'.js"></script>';
         
         //Script js qui permet de : créer l'arbre à partir des données contenus dans le fichier data.js
         //Ouvir l'arbre au bon endroit au travers de la variable $wgidPath  qui contient la hiéréchie des noeuds
@@ -73,7 +80,7 @@ class BCHookFunctions {
   }
 
   //Fonction qui renvoie le breadcrumb total d'un term ou d'une catégorie
-  function bcCustomBreadCrumbsDisplay(&$q, &$p) {
+  public static function bcCustomBreadCrumbsDisplay(&$q, &$p) {
     global $wgOut, $wgArticle, $qlg, $wgidPath;
     $hierarchyTree = new HierarchyTree();
     if ($wgArticle == null) return true;    

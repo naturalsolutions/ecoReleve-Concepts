@@ -9,7 +9,7 @@ class NSUtils {
 
 	
 
-	static function createFormTermLink ( &$parser, $specialPageName, $params ) {
+	public static function createFormTermLink ( &$parser, $specialPageName, $params ) {
 		global $wgVersion;
 
 		// Set defaults.
@@ -131,7 +131,7 @@ class NSUtils {
 		return $str;
 	}	
 	
-  public function createNewTopicInput (  &$parser, $label, $inValue, $pageName_inAutocompletionSource ,  $pageName_autocompletion_type){
+  public static function createNewTopicInput (  &$parser, $label, $inValue, $pageName_inAutocompletionSource ,  $pageName_autocompletion_type){
      global $sfgFieldNum;
     $formInputAttrs = array( );
   
@@ -186,7 +186,7 @@ class NSUtils {
     return $str;
   } 
   
-  public function nsCreateHtmlInputText ($label, $input_name, $inValue,  $inRemoteAutocompletion ,$inAutocompletionSource, $autocompletion_type ) {
+  public static  function nsCreateHtmlInputText ($label, $input_name, $inValue,  $inRemoteAutocompletion ,$inAutocompletionSource, $autocompletion_type ) {
         global $sfgFieldNum;
         $formInputAttrs = array( 'size' => 25 );
         $inputID = 'input_' . $sfgFieldNum;
