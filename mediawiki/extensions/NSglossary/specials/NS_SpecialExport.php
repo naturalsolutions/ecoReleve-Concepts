@@ -119,18 +119,27 @@ class NSSpecialExport extends SpecialPage {
       $printouts[] = new SMWPrintRequest(SMWPrintRequest::PRINT_PROP, 'has Connection', SMWPropertyValue::makeUserProperty('has Connection')); 
       $queryobj = SMWQueryProcessor::createQuery($q, $params,'self::INLINE_QUERY', 'count');
       $resultsCount = smwfGetStore()->getQueryResult($queryobj); 
-
+      
+      $allowedLg = $this->getAllowedLanguage();
+      
       $params = array('limit'=>100,'offset'=>0 );
         
       $wsCall = NSSMWData::buildWSQueryCall($wgServer.$wgScriptPath.'/index.php?title=Special%3AAsk&', $q,$proper,$params);
       $resultsXML = file_get_contents($wsCall);
-        
+      foreach ($allowedLg AS $lg ) {
+        $resultsXML = str_replace('>'.$lg.':',' xml:lang="'.$lg.'">', $resultsXML);
+      }
+      
       $rdfresults = '';
       for ($i=100; $i<$resultsCount+100; $i = $i+100) {
         $params = array('limit'=>100,'offset'=>$i );
         
         $wsCall = NSSMWData::buildWSQueryCall($wgServer.$wgScriptPath.'/index.php?title=Special%3AAsk&', $q,$proper,$params);
         $resultsCall= file_get_contents($wsCall);
+        foreach ($allowedLg AS $lg ) {
+          $resultsCall = str_replace('>'.$lg.':',' xml:lang="'.$lg.'">', $resultsCall);
+        }
+      
         //$resultsXML = $resultsXML . file_get_contents($wsCall);
         // print_r($resultsXML);
         $dom = new DomDocument;
@@ -353,6 +362,17 @@ class NSSpecialExport extends SpecialPage {
 		
 	}
 	
+  
+  public function getAllowedLanguage() {
+    $proptitle = Title::makeTitleSafe( SMW_NS_PROPERTY, 'Dcterms:language');
+    if ( $proptitle === null ) {
+      return;
+    }
+    $store = smwfGetStore();
+    // this returns an array of objects
+    $allowed_values = SFUtils::getSMWPropertyValues( $store, $proptitle, "Allows value" );
+    return $allowed_values;
+  }
   public function logUserSubscription($userId, $subTitle, $action) {
 
     $dbw = wfGetDB( DB_SLAVE );

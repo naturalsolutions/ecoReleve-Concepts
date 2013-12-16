@@ -16,37 +16,39 @@ class ImportMediawikiSKOSTemplatePage():
     self.importMessage= importMessage
     self.overwrite = overwrite
     self.page = None
-    self.templateDefinitionTermeSimple=u"""{{Definition term simple
-      |isTopConcept=%s
-      |hasTopConcept=%s
-      |prefered term=%s
-      |prefered term fr=%s
-      |prefered term ru=%s
-      |synonyms=%s
-      |synonyms fr=%s
-      |synonyms ru=%s
+    self.templateCommonConcept=u"""{{CommonConcept
+      |label=%s
       |definition=%s
-      |definition fr=%s
-      |definition ru=%s
-      |reference=%s
+      |alternative labels=%s
+      |notes=%s
+      |references=%s
+      |identifier=%s
+      }}"""
+    self.templateDefinitionTermeSimple=u"""{{SimpleTermDefinition
+      |hasTopConcept=%s
       |broader=%s
       |order=%s
-      |term_category=%s
-      |initial_id=%s
       }}"""
-    self.templateDefinitionTermCategory=u"""{{Definition_term_category
-      |prefered term=%s
-      |prefered term fr=%s
-      |prefered term ru=%s
-      |synonyms=%s
-      |synonyms fr=%s
-      |synonyms ru=%s
-      |definition=%s
-      |definition fr=%s
-      |definition ru=%s
-      |reference=%s
+    self.templateDefinitionCategory=u"""{{CategoryConceptDefinition
       |broader=%s
       }}"""
+    self.templateDefinitionTopConcept=u"""{{TopConceptDefinition
+      |compartment=%s
+      }}"""
+    self.templateConceptRelation=u"""{{Concept relation
+      |relation=%s
+      |internal-page=%s
+      |uri=%s
+      }}"""
+    self.templateConceptTranslation=u"""{{Concept translation
+      |language=%s
+      |label=%s
+      |definition=%s
+      |alternative labels=%s
+      |notes=%s
+      }}"""
+       
+      
     if lg is None:
       self.mainLg = 'en'
     else : 
@@ -56,47 +58,74 @@ class ImportMediawikiSKOSTemplatePage():
   def importSkosFile (self, pages) : 
     self.login()
     for pages in pages:
-      self.createOrUpdatePage(page)
+      try:
+        self.createOrUpdatePage(page)
+      except KeyError:
+        continue
     wikipedia.stopme()
     
   def extractValuesAndCreateTemplate(self, page, loader):
     #Test page type : Collection/Concept/Scheme
     pageType = type(page).__name__
-    #text = self.templateDefinitionTermeSimple % ('isTopConcept', 'hasTopConcept', prefered, prefered fr, prefered ru, sy, sy fr, sy ru, def, def fr, def ru,
-    #  ref, broader, order,  category, initialid)
+    
+    """****************************************************************
+            GENERIC TEMPLATE
+    ****************************************************************"""
+    text = self.templateCommonConcept % (
+      page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['prefLabel'], self.mainLg) if not page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['prefLabel'], self.mainLg) == '' else page.prefLabel, 
+      page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['definition'], self.mainLg) if not page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['definition'], self.mainLg) == '' else page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['definition'], None) ,  
+      page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['altLabel'], self.mainLg), 
+      page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['note'], self.mainLg), 
+      '',
+      page.uri
+    )
+    
+    lgs= page.associatedPropertiesLg.getAllLgValue(None);
+    if self.mainLg in lgs: 
+      lgs.remove(self.mainLg)
+    if None in lgs: 
+      lgs.remove(None)
+    for lg in lgs:
+      text += self.templateConceptTranslation % (
+        lg,
+        page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['prefLabel'],lg),
+        page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['definition'], lg), 
+        page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['altLabel'], lg), 
+        page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['note'],lg)
+      )
+      
+    """****************************************************************
+            SPECIFIC TEMPLATE Collection/Topconcept/Concept
+    ****************************************************************"""
     if (pageType == 'Concept') :
-      text = self.templateDefinitionTermeSimple % (
-        page.isTopConcept, 
-        self._getTopConcept(page, loader),
-        page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['prefLabel'], self.mainLg) if not page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['prefLabel'], self.mainLg) == '' else page.prefLabel, 
-        page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['prefLabel'], 'fr'), 
-        page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['prefLabel'], 'ru'), 
-        page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['altLabel'], 'en'), 
-        page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['altLabel'], 'fr'), 
-        page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['altLabel'], 'ru'), 
-        page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['definition'], 'en'), 
-        page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['definition'], 'fr'), 
-        page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['definition'], 'ru'), 
-        '', 
-        self._getBroaders(page, loader),
-        '',
-        self._getCategory(page, loader),
-        page.uri
-      )
+      if (page.isTopConcept == 'yes'):
+        text += self.templateDefinitionTopConcept % (
+          self._getCategory(page, loader),
+        )
+      else:
+        text += self.templateDefinitionTermeSimple % (
+          self._getTopConcept(page, loader),
+          self._getBroaders(page, loader),
+          ''
+        )
+        """****************************************************************
+            RELATION TEMPLATE
+        ****************************************************************"""
+      for relate in page.related:
+        if ((relate != self._getPreferedlabelForRelatedConcept(relate,loader))):
+          text += self.templateConceptRelation%('skos:related',self._getPreferedlabelForRelatedConcept(relate,loader),'')
+        else:
+          text += self.templateConceptRelation%('skos:related','',relate)
+      for syno in page.synonyms:
+        if ((syno != self._getPreferedlabelForRelatedConcept(syno,loader))):
+          text += self.templateConceptRelation%('skos:exactMatch',self._getPreferedlabelForRelatedConcept(syno,loader),'')
+        else:
+          text += self.templateConceptRelation%('skos:exactMatch','',syno)
     else : 
-      text = self.templateDefinitionTermCategory % (
-        page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['prefLabel'], self.mainLg) if not page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['prefLabel'], self.mainLg) == '' else page.prefLabel, 
-        page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['prefLabel'], 'fr'), 
-        page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['prefLabel'], 'ru'), 
-        page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['altLabel'], 'en'), 
-        page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['altLabel'], 'fr'), 
-        page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['altLabel'], 'ru'), 
-        page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['definition'], 'en'), 
-        page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['definition'], 'fr'), 
-        page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['definition'], 'ru'), 
-        '', 
+      text += self.templateDefinitionCategory % (
         'Term category' if self._getCategory(page, loader) =='' or pageType == 'ConceptScheme' else self._getCategory(page, loader)
-      )
+      )    
+    
     return text.encode('utf8', 'ignore')
     
   def login(self):
@@ -110,13 +139,19 @@ class ImportMediawikiSKOSTemplatePage():
       name = page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['prefLabel'], self.mainLg) if not page.associatedPropertiesLg.getAssociatedPropertiesLgValue(['prefLabel'], self.mainLg) == '' else page.prefLabel
       mwpage = wikipedia.Page( self.mwSite,prefix+name)
       if mwpage.exists() and self.overwrite == False: # if the page already exists
-        print prefix + name.encode('utf8') + u' exists already, I did not change it.'
+        try:
+          print  u' exists already, I did not change it.'
+        except IndexError:
+          pass
       else: # create the text for the page and load it up
-        mwpage.put(self.extractValuesAndCreateTemplate(page, loader).decode('utf8'), self.importMessage)
-        txt = u'Added page ' + prefix + name.encode('utf8')
-        print txt
+        try:
+          mwpage.put(self.extractValuesAndCreateTemplate(page, loader).decode('utf8'), self.importMessage)
+          txt = u'Added page ' 
+          print txt
+        except IndexError:
+          pass
     except IndexError:
-      print IndexError
+      raise
 
   def _getTopConcept(self, page, loader):
     if (page.isTopConcept == 'no') and (page.hasTopConcept):

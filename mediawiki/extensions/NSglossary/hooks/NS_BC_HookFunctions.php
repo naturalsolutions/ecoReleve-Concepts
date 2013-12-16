@@ -50,7 +50,7 @@ class BCHookFunctions {
         $selectNode = 'var node;';
         if ($wgidPath) {
           foreach ($wgidPath as $artId) {
-              $selectNode .= 'node = $tree.tree(\'getNodeById\', '.$artId.');$tree.tree(\'openNode\', node, true); ';
+              if ( $artId !== 0 ) $selectNode .= 'node = $tree.tree(\'getNodeById\', '.$artId.');$tree.tree(\'openNode\', node, true); ';
           }
         }
         $html .= '<script type="text/javascript">
@@ -71,6 +71,7 @@ class BCHookFunctions {
                }
             });   
         </script>';
+         
         $html .= '<div id="treeport" ></div>';
         if ( $html ) {
           $tpl->data['sidebar']['categorytree-portlet'] = $html;

@@ -10,45 +10,6 @@
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
 	xmlns:owlxml="http://www.w3.org/2006/12/owl2-xml#">
 
-<rdf:Description rdf:about="http://aims.fao.org/aos/agrovoc">
-	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://aims.fao.org/aos/agrovoc/c_4788">
-	<rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-	<skos:inScheme rdf:resource="http://aims.fao.org/aos/agrovoc"/>
-	<skos:topConceptOf rdf:resource="http://aims.fao.org/aos/agrovoc"/>
-	<compose xmlns="http://aims.fao.org/aos/agrontology#" rdf:resource="http://aims.fao.org/aos/agrovoc/c_12522"/>
-	<isUsedIn xmlns="http://aims.fao.org/aos/agrontology#" rdf:resource="http://aims.fao.org/aos/agrovoc/c_2736"/>
-	<isUsedIn xmlns="http://aims.fao.org/aos/agrontology#" rdf:resource="http://aims.fao.org/aos/agrovoc/c_2758"/>
-	<isUsedIn xmlns="http://aims.fao.org/aos/agrontology#" rdf:resource="http://aims.fao.org/aos/agrovoc/c_3041"/>
-	<isUsedIn xmlns="http://aims.fao.org/aos/agrontology#" rdf:resource="http://aims.fao.org/aos/agrovoc/c_3791"/>
-	<isUsedIn xmlns="http://aims.fao.org/aos/agrontology#" rdf:resource="http://aims.fao.org/aos/agrovoc/c_4668"/>
-	<isUsedIn xmlns="http://aims.fao.org/aos/agrontology#" rdf:resource="http://aims.fao.org/aos/agrovoc/c_4911"/>
-	<isUsedIn xmlns="http://aims.fao.org/aos/agrontology#" rdf:resource="http://aims.fao.org/aos/agrovoc/c_7536"/>
-	<isUsedIn xmlns="http://aims.fao.org/aos/agrontology#" rdf:resource="http://aims.fao.org/aos/agrovoc/c_7683"/>
-	<influences xmlns="http://aims.fao.org/aos/agrontology#" rdf:resource="http://aims.fao.org/aos/agrovoc/c_2208"/>
-	<hasStatus xmlns="http://aims.fao.org/aos/agrontology#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Published</hasStatus>
-	<dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-05-16T16:16:00Z</dct:modified>
-	<dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-11-20T20:17:38Z</dct:created>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://aims.fao.org/aos/agrovoc/xl_ar_1299485662065">
-	<literalForm xmlns="http://www.w3.org/2008/05/skos-xl#" xml:lang="ar">أساليب</literalForm>
-	<rdf:type rdf:resource="http://www.w3.org/2008/05/skos-xl#Label"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://aims.fao.org/aos/agrovoc/c_4788">
-	<prefLabel xmlns="http://www.w3.org/2008/05/skos-xl#" rdf:resource="http://aims.fao.org/aos/agrovoc/xl_ar_1299485662065"/>
-	<skos:prefLabel xml:lang="ar">أساليب</skos:prefLabel>
-</rdf:Description>
-
-<rdf:Description rdf:about="http://aims.fao.org/aos/agrovoc/xl_ar_1299485662065">
-	<hasCodeAgrovoc xmlns="http://aims.fao.org/aos/agrontology#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">4788</hasCodeAgrovoc>
-	<hasStatus xmlns="http://aims.fao.org/aos/agrontology#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Published</hasStatus>
-	<dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2002-12-12T00:00:00Z</dct:created>
-</rdf:Description>
-
 
 <skos:ConceptScheme rdf:about="http://aims.fao.org/aos/agrovoc22">
 	<skos:prefLabel xml:lang="en">Simple schema</skos:prefLabel>
@@ -92,6 +53,14 @@
 </skos:Concept>
 
 
+<skos:Concept rdf:about="http://vocab.nerc.ac.uk/collection/L19/current/005/">
+	<skos:prefLabel xml:lang="en">fffgererer</skos:prefLabel>
+	<skos:prefLabel xml:lang="fr">sdfsdfs</skos:prefLabel>
+	<skos:altLabel xml:lang="fr">scxvxcvxcv</skos:altLabel>
+	<skos:broader rdf:resource="http://my.fake.domain/test1"/>
+</skos:Concept>
+
+
   <skos:Collection rdf:about="http://my.fake.domain/collection">
     <skos:prefLabel xml:lang="en">Linguistic groupings</skos:prefLabel>
     <skos:prefLabel xml:lang="fr">Ensembles linguistiques</skos:prefLabel>
@@ -105,6 +74,7 @@
         <skos:prefLabel xml:lang="en">Ocean</skos:prefLabel>
         <skos:definition>Just another concept</skos:definition>
         <skos:related rdf:resource="http://my.fake.domain/test1"/>
+        <skos:related rdf:resource="http://nonexisiting.fake.domain/test1"/>
       </skos:Concept>
     </skos:member>
   </skos:Collection>

@@ -22,12 +22,12 @@ class HierarchyTree {
     //page est une catégorie
     if ($article->getTitle()->mNamespace==14) {
       $category_hier=  $this->getParent( $article->getTitle());
-      $isTopConcept = 'category';
+      $skosType = 'category';
     }
     else { 
       //Si le titre est un top concept
-      $isTopConcept = $this->isTopConcept($article->getTitle());
-      if ($isTopConcept == 'true') {
+      $skosType = $this->getSkosType($article->getTitle());
+      if ($skosType == 'TopConcept') {
         $category_hier= $this->getParent( $article->getTitle() );
       }
       else {
@@ -51,7 +51,7 @@ class HierarchyTree {
     }
     //Si le terme est un top concept et n'est pas une catégorie
     //=>breadcrump pour la hiérarchie des concepts (broader)
-    if ($isTopConcept != 'true' &&  $isTopConcept != 'category') {
+    if ($skosType != 'TopConcept' &&  $skosType != 'category') {
       $broaderHier= $this->getBroaderTerm ($article->getTitle()) ;
       foreach ( $broaderHier as $item ) {
         if ($item!='' ) {
@@ -160,8 +160,6 @@ class HierarchyTree {
   
   function createJsonVarFile ($dir, $file, $content) {
     try {
-      print_r($dir);
-      print_r($file);
       $jsonftree ='var data =' .$content .';';
       $fp = fopen($dir.$file, 'w');
       fwrite($fp, $jsonftree);
@@ -211,7 +209,7 @@ class HierarchyTree {
       if ($row->page_namespace == 14)  {
         $child = $this->getChildrenCategoryLinks( $page,  $level +1);
       }
-      elseif($this->isTopConcept($page) == 'true') { 
+      elseif($this->getSkosType($page) == 'TopConcept') { 
       //Si le fils est un top concept alors on récupère ces fils au travers de la fonction getChildOfBroaderTerm
         $child = $this->getChildOfBroaderTerm($page);  
         $row->type='topConcept';
@@ -329,14 +327,15 @@ class HierarchyTree {
 
   /****************************************************************************
    * 
-   * name: isTopConcept
-   *  Fonction qui revoie la valeur de la propriété sémantique IsTopConcept d'une page
+   * name: getSkosType
+   *  Fonction qui revoie la valeur de la propriété sémantique type d'une page
+   * Peut être de trois valeur = Schema/Collection/TopConcept/Concept
    * @param
    *  $title String d'une page
    * @return boolean sous la forme d'une chaine de caractère
    ****************************************************************************/
-  function isTopConcept($title) {
-      $params = array ("[[$title]]", "?IsTopConcept=", "mainlabel=-");
+  function getSkosType($title) {
+      $params = array ("[[$title]]", "?Skos:type=", "mainlabel=-");
       $result = SMWQueryProcessor::getResultFromFunctionParams( $params, SMW_OUTPUT_WIKI );
       return $result;
   }
@@ -435,14 +434,18 @@ class HierarchyTree {
     $semdata = smwfGetStore()->getSemanticData( SMWDIWikiPage::newFromTitle( $page ));
     
     //Récupération des valeurs de la propriétés prefered label selon la langue
-    $labelProp = 'Skos:preferedLabel';
-    if ($lg!='en')$labelProp .='@'.$lg ;
-    
+    $labelProp = 'Skos:prefLabel';
+      
     $property = new SMWDIProperty($labelProp);
-    $value =  NSSMWData::getStringPropertyValue($semdata, $property);
-    
+    $values =  NSSMWData::getStringPropertyValues($semdata, $property);
+    $valueen;
+    foreach ($values as $val) {
+    	$data = explode(':', $val);
+    	if ( $data[0] == $lg) $value= $data[1] ;
+    	if ( $data[0] == 'en') $valueen= $data[1] ;
+    }
     //Si aucune valeur n'a été récupéré => récupération du label en
-    if (is_null($value) || $value=='') $value = NSSMWData::getStringPropertyValue($semdata,  new SMWDIProperty('Skos:preferedLabel'));
+    if (is_null($value) || $value=='') $value = $valueen;
     
     //Récupération du type pour rajouter le picto
     $img = '';

@@ -1,3 +1,56 @@
+MediaWiki:SMWToSKOS.xsl
+MediaWiki:Sidebar
+MediaWiki:Smw_import_bibo
+MediaWiki:Smw_import_dcterms
+MediaWiki:Smw_import_rdf
+MediaWiki:Smw_import_rdfs
+MediaWiki:Smw_import_skos
+Template:Abbr
+Template:Bibliographic_resource
+Template:BuildTermHierarchy
+Template:CategoryConceptDefinition
+Template:CommonConcept
+Template:Concept
+Template:Concept/doc
+Template:Concept_relation
+Template:Concept_relation/doc
+Template:Concept_translation
+Template:Concept_translation/also
+Template:Concept_translation/doc
+Template:Concept_translation/notes
+Template:Documentation
+Template:Documentation/doc
+Template:Documentation/docname
+Template:Documentation/docspace
+Template:Documentation/end_box
+Template:Documentation/end_box2
+Template:Documentation/start_box
+Template:Documentation/start_box2
+Template:Documentation/subpage
+Template:Documentation/template_page
+Template:Fmbox
+Template:GetFallback
+Template:GetFallback2
+Template:LangSwitch
+Template:Language
+Template:Languages
+Template:Languages/Lang
+Template:Languages/Title
+Template:MultivalueField
+Template:Nmbox
+Template:Ombox
+Template:Ombox/core
+Template:Pp-meta
+Template:Pp-template
+Template:Purge
+Template:RenderLabelWithLg
+Template:SimpleTermDefinition
+Template:TemplateError
+Template:Thesaurus_subscription
+Template:Tim
+Template:Tiw
+Template:TopConceptDefinition
+Template:Uselang
 Property:Bibo:Document
 Property:Bibo:Webpage
 Property:Bibo:abstract
@@ -15,45 +68,33 @@ Property:Dcterms:language
 Property:Dcterms:publisher
 Property:Dcterms:title
 Property:Dcterms:type
+Property:Modification_date
 Property:Rdf:type
 Property:Rdfs:comment
 Property:Rdfs:isDefinedBy
 Property:Rdfs:label
 Property:Rdfs:subPropertyOf
-Property:Skos:altLabel@fr
+Property:Skos:altLabel
 Property:Skos:broader
 Property:Skos:definition
-Property:Skos:definition@fr
 Property:Skos:example
-Property:Skos:preferedLabel
-Property:Skos:preferedLabel@fr
+Property:Skos:hasTopConcept
+Property:Skos:isTopConcept
+Property:Skos:member
+Property:Skos:note
+Property:Skos:prefLabel
 Property:Skos:related
+Property:Skos:type
+Form:Bibliographic_resource
+Form:Definition_CategoryConcepts
+Form:Definition_Terms
+Form:Definition_TopConcepts
+Form:Thesaurus_subscription
 Category:SKOS
 Category:Bibo
-Category:Bibliographic resources
-Category:Term
-Category:Term category
-Category:Term category type
+Category:Imported_property
 Category:TopConcept
-Property:Skos:definition@ru
-Property:Skos:preferedLabel@ru
-Property:Skos:altLabel@ru
-MediaWiki:Smw_import_skos
-MediaWiki:Smw_import_bibo
-MediaWiki:Smw_import_dcterms
-MediaWiki:Smw_import_rdf
-MediaWiki:Smw_import_rdfs
-Form:Definition term simple
-Form:Definition term category
-Form:Definition topConcept
-Form:Definition term
-Form:Bibliographic resource
-Template:!
-Template:!-
-Template:Bibliographic resource
-Template:BuildTermHierarchy
-Template:Definition term category
-Template:Definition term simple
-Template:OperationActionList
-Template:Skos definition tab
-Template:TestFilteredTopConceptResult
+Category:TestCompartiment
+Category:Environnement
+Category:Thesaurus_subscription
+Category:Term_category

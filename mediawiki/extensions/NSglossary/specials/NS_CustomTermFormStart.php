@@ -16,13 +16,15 @@ class NSCustomTermFormStart extends SpecialPage {
 
 
   //Définition des constantes
-	static $term_templateName = 'Definition term simple';
-  static $term_formName = 'Definition term simple';
+	static $concept_templateName = 'CommonConcept';
+	
+	static $term_templateName = 'SimpleTermDefinition';
+  static $term_formName = 'Definition_Terms';
   
-	static $voc_templateName = 'Definition term simple';
-  static $voc_termFormName = 'Definition_type';
+	static $voc_templateName = 'TopConceptDefinition';
+  static $voc_termFormName = 'Definition_TopConcepts';
   
-  static $term_inAutocompletionSource = 'Term';
+  static $term_inAutocompletionSource = 'SimpleTerm';
   static $term_autocompletion_type = 'category';
   static $voc_inAutocompletionSource = 'TopConcept';
   static $voc_autocompletion_type = 'category';
@@ -237,7 +239,7 @@ END;
           $queryParam[]= self::$term_templateName.'[isTopConcept]=No';
           $relatedTopicName = $params['relatedTopic'];
           $relationType = $params['relationType'];
-          $queryParam[]= self::$term_templateName.'[prefered term]='.$page_name;
+          $queryParam[]= self::$concept_templateName.'[label]='.$page_name;
           //Si le terme où se situait le formulaire est un top concept alors $params['isTopConcept'] = True
           if ($params['isTopConcept']) {
              $queryParam[]= self::$term_templateName.'[hasTopConcept]='.$relatedTopicName;
@@ -267,8 +269,8 @@ END;
         break;
         case 'newterm' : 
           $vocabulary = $params['vocabulary'];
-          $queryParam[]= self::$term_templateName.'[prefered term]='.$page_name;
-          $queryParam[]= self::$term_templateName.'[vocabulary]='.$vocabulary;
+          $queryParam[]= self::$concept_templateName.'[label]='.$page_name;
+          $queryParam[]= self::$term_templateName.'[hasTopConcept]='.$vocabulary;
           $queryParam[]= self::$term_templateName.'[broader]='.$vocabulary;
           $queryParam[]= self::$term_templateName.'[order]=1';
           $order = self::getMaxOrder($vocabulary);
@@ -278,8 +280,8 @@ END;
           $term_category = $params['term_category'];
           unset($term_category['is_list']);
           $listterm_category = implode('&', $term_category);
-          $queryParam[]= self::$voc_templateName.'[prefered term]='.$page_name;
-          $queryParam[]= self::$voc_templateName.'[term_category]='.$listterm_category;
+          $queryParam[]= self::$concept_templateName.'[label]='.$page_name;
+          $queryParam[]= self::$voc_templateName.'[compartment]='.$listterm_category;
           $queryParam[]= self::$term_templateName.'[isTopConcept]=Yes';
           
         break;

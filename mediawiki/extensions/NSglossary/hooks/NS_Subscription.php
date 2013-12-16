@@ -74,28 +74,17 @@ class NSSubscription {
     foreach ( $res as $row ) {
       $actualRes[$row->upg_subscription_title] = 'false';
     }
+    
 		$dbw = wfGetDB( DB_MASTER );
-
 		$dbw->begin();
-
-	/*	$dbw->delete(
-			'nss_subscription_per_user',
-			array( 'upg_user_id' => $user->getId() )
-		);*/
-
+		
 		foreach ( $options as $name => $value ) {
 			if ( strpos( $name, 'nsg_subscription_' ) === 0 && $value ) {
         $subName = str_replace('nsg_subscription_', '', $name);
         //Si la clé n'existe pas
         if (!array_key_exists($subName, $actualRes)) {
           $actualRes[$subName] = true;
-          $dbw->insert(
-            'nss_subscription_per_user',
-            array(
-              'upg_user_id' => $user->getId(),
-              'upg_subscription_title' =>  str_replace('nsg_subscription_', '', $name) 
-            )
-          );
+          NSSubscription::addSubToUser($dbw, $subName, $user) ;
         }
         else {
           $actualRes[$subName] = true;
@@ -104,20 +93,13 @@ class NSSubscription {
 		}
     
     //Suppression des données de log des subscriptions désactivées
-    foreach ( $actualRes as $k => $val ) {
+    foreach ( $actualRes as $subName => $val ) {
       if ($val === 'false') {
-        $dbw->delete(
-          'nss_subscription_log_per_user',
-          array('lpg_subscription_title' =>  $k,  'lpg_user_id' => intval($user->getId()) )
-        );
-        $dbw->delete(
-          'nss_subscription_per_user',
-          array('upg_subscription_title' =>  $k,  'upg_user_id' => intval($user->getId()) )
-        );
+        NSSubscription::delSubToUser($dbw,$subName, $user);
       }
     }
+		
 		$dbw->commit();
-
 		return true;
 	}
 
@@ -179,5 +161,44 @@ class NSSubscription {
 
 		return true;
 	}
+	/**
+	 * ArticleEditUpdates : Executes when edit updates (mainly link tracking) are made after an article has been changed
+	 * This function reinitialize the subscription
 
+	 */
+	public static function onArticleEditUpdatesReinitializeSub( &$article, &$editInfo, $changed ) {
+		//Test if page is link to the Category Thesaurus_subscription
+		$cat = $article->getTitle()->getParentCategories();
+		if ( array_key_exists('Category:Thesaurus_subscription', $cat)) {
+			$dbw = wfGetDB( DB_MASTER );
+			$dbw->begin();
+			$dbw->delete(
+				'nss_subscription_log_per_user',
+				array('lpg_subscription_title' =>  $article->getTitle()->getSubjectPage())
+			);
+			$dbw->commit();
+		}
+		return $article;
+  }
+  
+  private static function addSubToUser($dbw, $subName, $user) {
+		$dbw->insert(
+			'nss_subscription_per_user',
+			array(
+				'upg_user_id' => $user->getId(),
+				'upg_subscription_title' =>  str_replace('nsg_subscription_', '', $subName) 
+			)
+    );
+	}
+	
+	private static function delSubToUser($dbw, $subName, $user) {
+		$dbw->delete(
+			'nss_subscription_log_per_user',
+			array('lpg_subscription_title' =>  $subName,  'lpg_user_id' => intval($user->getId()) )
+		);
+		$dbw->delete(
+			'nss_subscription_per_user',
+			array('upg_subscription_title' =>  $subName,  'upg_user_id' => intval($user->getId()) )
+		);
+	}
 }

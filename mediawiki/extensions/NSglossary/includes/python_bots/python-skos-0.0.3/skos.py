@@ -509,7 +509,13 @@ class AssociatedPropertiesLgs(object):
       if (pr.propertyType in propertyType) and (pr.propertyLg == propertyLg) : 
         matchedpr.append(pr.propertyValue)
     return separator.join(matchedpr)
-
+    
+  def getAllLgValue(self, propertyType=None):
+    languages = []
+    for pr in self.data:
+      if ((propertyType == None) or (pr.propertyType in propertyType)) : 
+        languages.append(pr.propertyLg)
+    return list(set(languages))
 
 _Synonyms = _create_attribute_mapping('synonyms')
 _Related = _create_attribute_mapping('related')
@@ -865,16 +871,13 @@ class RDFLoader(collections.Mapping):
           try:
             member = cache[normalise_uri(object_)]
           except KeyError:
-              #print " eeerrror _loadCollections cache[normalise_uri(object_)]" + object_
               continue
           debug('adding %s to %s as a member', object_, subject)
           try:
             cache[normalise_uri(subject)].members.add(member)
           except KeyError:
-              #print "eeerrror _loadCollections cache[normalise_uri(subject)].members.add(member) " + subject
               print object_
               continue 
-
       return collections
 
   def _loadConceptSchemes(self, graph, cache):
@@ -898,13 +901,11 @@ class RDFLoader(collections.Mapping):
         try:
             member = cache[normalise_uri(subject)]
         except KeyError:
-            #print " eeerrror  _loadConceptSchemes cache[normalise_uri(subject)]" + subject
             continue
         debug('adding %s to %s as a member', subject, object_ )
         try:
           cache[normalise_uri(object_)].concepts.add(member)
         except KeyError:
-          #print "eeerrror _loadConceptSchemes cache[normalise_uri(object_)].concepts.add(member)" + object_
           continue 
       return schemes
 

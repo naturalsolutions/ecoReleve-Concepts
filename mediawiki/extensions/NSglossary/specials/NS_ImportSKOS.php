@@ -68,7 +68,7 @@ class NSImportSKOS extends SpecialPage {
     #$this->displayForm();
     global  $nsfgIP;
     #', '/tmp/phpA1t5wz', ',', '1', ',', 'Added from ImportMediawikiSKOSTemplatePage', ',', 'scout<script>window.scrollTo(0,99999);</script>hemes', ',', '', ',', '
-    $command = "python  $nsfgIP/includes/python_bots/skos_importer_pythonLib_clean.py ";
+    $command = "python  $nsfgIP/includes/python_bots/skos_importer_pythonLib.py ";
     $command .= " '$filePath' '$pagesThatExist' '$import_summary' '$elementToImportSchema' '$elementToImportCollection' '$elementToImportConcept' 2>&1";
     echo "<style type='text/css'>
      div.msg-import-skos{

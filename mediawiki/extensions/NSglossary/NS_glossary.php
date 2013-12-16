@@ -117,6 +117,8 @@ $wgHooks['SkinTemplateNavigation'][] = 'NSCustomActionsTabs::displayCustomAction
 # $wgHooks['SkinTemplateTabs'][] = 'efCategoryTreeInstallTabs';
 $wgHooks['ArticleFromTitle'][] = 'efCategoryTermFromTitle';
  
+$wgHooks['ArticleEditUpdates'][] = 'NSSubscription::onArticleEditUpdatesReinitializeSub';
+
  
 $wgHooks['ParserBeforeStrip'][] = 'BCHookFunctions::onParserBeforeStrip';
 
